@@ -13,3 +13,6 @@ export default (passport) => {
     }
   ));
 }
+
+
+// id_ed25519
