@@ -1,0 +1,9 @@
+import mongoose from "mongoose";
+import { timestamp } from "../../data/timestamp.data.js";
+import { officeData } from "../../data/offices.data.js";
+
+const customerOfficeAddressSchema = new mongoose.Schema(officeData, timestamp)
+
+const customerOfficeAddress = mongoose.model("customerOfficeAddress", customerOfficeAddressSchema)
+
+export default customerOfficeAddress;

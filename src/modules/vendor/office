@@ -1,0 +1,47 @@
+import VendorOffice from "../../models/vendors/offices.";
+import { createOfficeValidator } from "../utils/validators/vendorValidator.module.js";
+
+export async function officeCreator(req, res) {
+
+    const {
+        title, address
+    } = req.body;
+
+    try {
+
+        const id = req.userId;
+        const { error } = createOfficeValidator(req.body);
+
+        
+        if (error) {
+            return res.status(400).send({ msg: error.details[0].message } )
+        }
+
+        const office = new VendorOffice({
+            vendorId: id,
+            title: req.body.title,
+            address: req.body.address
+        });
+       
+        const result = await office.save();;
+
+        if (!result){
+            return res.status(401).send({msg: "Something went wrong and office creation failed."})
+        }
+
+        return res.status(200).send({ msg: "Office Created successfully!" });
+
+
+    } catch (error) {
+       return res.status(500).send({ msg: error.message });
+    }
+
+}
+
+export async function getAllOffices(req, res) {
+
+}
+
+export async function getAllOfficeBranches(req, res) {
+
+}
