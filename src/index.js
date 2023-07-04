@@ -36,10 +36,11 @@ function isLoggedIn(req, res, next) {
 
 
 
-
+app.get('/', (req, res) => {
+    res.send("Hello Hi API, HERE we go")
+});
 
 app.use('/api/users', auth, (req, res) => {
-    console.log("lalkdjfs");
     return res.status(200).send({ message: "Michael King, signing in successful"})
 })
 
